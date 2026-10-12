@@ -3,16 +3,20 @@ name: CI
 on:
   push:
     branches:
-      - master
-      - release/*
+    - master
+    - release/*
   pull_request:
     branches:
-      - master
-      - release/*
+    - master
+    - release/*
 
 jobs:
   linux:
-    runs-on: ubuntu-latest
+    runs-on:
+    - self-hosted
+    - tower
+    - ubuntu-latest
+    - tower-run-${{ github.run_id }}-${{ github.run_attempt }}
     env:
       CHILD_CONCURRENCY: "1"
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -51,7 +55,11 @@ jobs:
       name: Run Integration Tests
 
   windows:
-    runs-on: windows-2016
+    runs-on:
+    - self-hosted
+    - tower
+    - windows-2016
+    - tower-run-${{ github.run_id }}-${{ github.run_attempt }}
     env:
       CHILD_CONCURRENCY: "1"
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -83,7 +91,11 @@ jobs:
       name: Run Integration Tests
 
   darwin:
-    runs-on: macos-latest
+    runs-on:
+    - self-hosted
+    - tower
+    - macos-latest
+    - tower-run-${{ github.run_id }}-${{ github.run_attempt }}
     env:
       CHILD_CONCURRENCY: "1"
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
