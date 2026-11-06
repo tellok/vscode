@@ -12,7 +12,7 @@ on:
 
 jobs:
   linux:
-    runs-on: ["self-hosted", "ubuntu-latest"]
+    runs-on: "ubuntu-latest"
     env:
       CHILD_CONCURRENCY: "1"
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -51,7 +51,7 @@ jobs:
       name: Run Integration Tests
 
   windows:
-    runs-on: ["self-hosted", "windows-2016"]
+    runs-on: "windows-2022"
     env:
       CHILD_CONCURRENCY: "1"
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -83,7 +83,7 @@ jobs:
       name: Run Integration Tests
 
   darwin:
-    runs-on: ["self-hosted", "macos-latest"]
+    runs-on: "macos-15-intel"
     env:
       CHILD_CONCURRENCY: "1"
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
